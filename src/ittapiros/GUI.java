@@ -5,8 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import javax.swing.JOptionPane;
 
@@ -14,6 +13,7 @@ public class GUI extends javax.swing.JFrame {
 
     public GUI() {
         golyoUjHelyreKerul();
+        elindult();
         initComponents();
     }
 
@@ -36,7 +36,6 @@ public class GUI extends javax.swing.JFrame {
         mnu4Pohar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Itt a piros...");
 
         btnPohar1.setText("Pohár 1");
         btnPohar1.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +195,9 @@ public class GUI extends javax.swing.JFrame {
             }
             System.out.println(joPohar + " " + megtalalta);
             System.out.println("Sikeres betöltés...");
+            
+            elindult();
+            
         } catch (IOException ex) {
             System.out.println("Sikertelen betöltés...");
         }
@@ -267,6 +269,17 @@ public class GUI extends javax.swing.JFrame {
         }
         if (cbxUjHely.isSelected()) {
             golyoUjHelyreKerul();
+        }
+    }
+
+    private void elindult() {
+        System.out.println("Elindult a program..");
+        try {
+            List<String> sorok = Files.readAllLines(Paths.get("tipp.deb"));
+            setTitle("A golyó a " + joPohar + ". pohár alatt található.");
+        } 
+        catch (IOException ex) {
+            System.out.println("Nincs ilyen fájl..");
         }
     }
 }
