@@ -3,7 +3,10 @@ package ittapiros;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -56,7 +59,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        lblVisszjelzes.setText("Visszajelzés: ");
+        lblVisszjelzes.setText("Válassz egy poharat!");
 
         cbxUjHely.setText("Új helyre rakja a golyót");
 
@@ -71,6 +74,11 @@ public class GUI extends javax.swing.JFrame {
         mnuFajl.add(mnuMentes);
 
         mnuBetolt.setText("Betöltés");
+        mnuBetolt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuBetoltActionPerformed(evt);
+            }
+        });
         mnuFajl.add(mnuBetolt);
 
         jMenuBar1.add(mnuFajl);
@@ -175,6 +183,23 @@ public class GUI extends javax.swing.JFrame {
             System.out.println("Sikertelen mentés...");
         }
     }//GEN-LAST:event_mnuMentesActionPerformed
+
+    private void mnuBetoltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBetoltActionPerformed
+        try {
+            List<String> sorok = Files.readAllLines(Paths.get("config.bin"));
+            int N = sorok.size();
+            for (String sor : sorok) {
+                String[] s = sor.split(";");
+                joPohar = Integer.parseInt(s[0]);
+                megtalalta = Boolean.parseBoolean(s[1]);
+                cbxUjHely.setSelected(Boolean.parseBoolean(s[2]));
+            }
+            System.out.println(joPohar + " " + megtalalta);
+            System.out.println("Sikeres betöltés...");
+        } catch (IOException ex) {
+            System.out.println("Sikertelen betöltés...");
+        }
+    }//GEN-LAST:event_mnuBetoltActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
