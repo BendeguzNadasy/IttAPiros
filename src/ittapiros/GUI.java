@@ -1,6 +1,10 @@
 package ittapiros;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Random;
+
 import javax.swing.JOptionPane;
 
 public class GUI extends javax.swing.JFrame {
@@ -29,7 +33,7 @@ public class GUI extends javax.swing.JFrame {
         mnu4Pohar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Itt a piros");
+        setTitle("Itt a piros...");
 
         btnPohar1.setText("Pohár 1");
         btnPohar1.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +63,11 @@ public class GUI extends javax.swing.JFrame {
         mnuFajl.setText("Fájl");
 
         mnuMentes.setText("Mentés");
+        mnuMentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuMentesActionPerformed(evt);
+            }
+        });
         mnuFajl.add(mnuMentes);
 
         mnuBetolt.setText("Betöltés");
@@ -132,6 +141,7 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private int joPohar = 0;
+    private boolean megtalalta = false;
     private void mnu4PoharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnu4PoharActionPerformed
         JOptionPane.showMessageDialog(mnu4Pohar,"Ez a mód még nem elérhető!");
     }//GEN-LAST:event_mnu4PoharActionPerformed
@@ -151,6 +161,20 @@ public class GUI extends javax.swing.JFrame {
     private void btnPohar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPohar3ActionPerformed
         talaltE(3);
     }//GEN-LAST:event_btnPohar3ActionPerformed
+
+    private void mnuMentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMentesActionPerformed
+        StringBuilder sb = new StringBuilder();
+        sb.append(joPohar + ";");
+        sb.append(megtalalta + ";");
+        sb.append(cbxUjHely.isSelected());
+        try {
+            Files.write(Paths.get("config.bin"), sb.toString().getBytes());
+            System.out.println("Sikeres mentés a config.bin fájlba... ");
+        } 
+        catch (IOException ex) {
+            System.out.println("Sikertelen mentés...");
+        }
+    }//GEN-LAST:event_mnuMentesActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -201,6 +225,7 @@ public class GUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void golyoUjHelyreKerul() {
+        megtalalta = false;
         Random rnd = new Random();
         joPohar = rnd.nextInt(3)+1;
         System.out.println(joPohar);
@@ -210,6 +235,7 @@ public class GUI extends javax.swing.JFrame {
         if (pohar == joPohar) {
             lblVisszjelzes.setText("Itt volt a piros!");
             golyoUjHelyreKerul();
+            megtalalta = true;
         }
         else {
             lblVisszjelzes.setText("Nem talált próbáld újra!");
