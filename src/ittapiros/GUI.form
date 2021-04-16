@@ -30,6 +30,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#xda;j J&#xe1;t&#xe9;k"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuUjJatekActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnu3Pohar">
               <Properties>
@@ -40,6 +43,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="4 poh&#xe1;r"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnu4PoharActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -48,6 +54,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Itt a piros"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -79,11 +86,10 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="btnPohar1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="btnPohar2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace pref="37" max="32767" attributes="0"/>
                               <Component id="btnPohar3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -120,16 +126,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Poh&#xe1;r 1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPohar1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPohar3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Poh&#xe1;r 3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPohar3ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPohar2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Poh&#xe1;r 2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPohar2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblVisszjelzes">
       <Properties>
